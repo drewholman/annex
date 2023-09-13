@@ -1,6 +1,9 @@
 import os
+import psycopg2
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
