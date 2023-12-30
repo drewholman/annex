@@ -63,5 +63,5 @@
     {{ moment.include_moment() }}
     {{ moment.lang(g.locale) }}
     <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
-    <script src="{{ url_for(filename='plaid.js') }}"></script>
+    <script src="{{url_for('static', filename='plaid.js')}}"></script>
 {% endblock %}
