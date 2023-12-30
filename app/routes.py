@@ -247,6 +247,10 @@ def dedupe_instution(ins_id):
 def oauth():
     return render_template('cash/oauth.html', title=_('OAuth'))
 
+@app.route('/b_testing', methods=['GET'])
+def b_testing():
+    print("test")
+
 ## Create link token for Plaid Link
 @app.route('/create_link_token', methods=['POST', 'GET'])
 def create_link_token():
@@ -259,7 +263,7 @@ def create_link_token():
             client_name="Anex Connect",
             country_codes=list(map(lambda x: CountryCode(x), current_app.config['PLAID_COUNTRY_CODES'])),
             language='en',
-            webhook='http://e9dd-67-185-58-96.ngrok.io/cash/event',
+            #webhook='http://e9dd-67-185-58-96.ngrok.io/cash/event',
             # webhook='https://coda.io/apis/v1/docs/w0-kg2eEuP/hooks/automation/grid-auto-5Hnjl4QPh5',
             user=LinkTokenCreateRequestUser(
                 client_user_id=str(time.time())
