@@ -11,7 +11,7 @@ from app.email import send_password_reset_email
 import json
 from app.models import Item, Account, Transaction
 import plaid
-from app.cash.plaid_connect import authorize_and_create_transfer, get_institution, pretty_print_response, format_error, configure, get_products, check_institution, get_institution
+from app.plaid_connect import authorize_and_create_transfer, get_institution, pretty_print_response, format_error, configure, get_products, check_institution, get_institution
 from sqlalchemy import and_
 from plaid.model.country_code import CountryCode
 from plaid.model.link_token_create_request import LinkTokenCreateRequest
