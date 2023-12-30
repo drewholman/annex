@@ -6,7 +6,7 @@
     }
     // Grab a Link token to initialize Link
     const createLinkToken = async () => {
-        const res = await fetch("/cash/create_link_token");
+        const res = await fetch("/create_link_token");
         const data = await res.json();
         const linkToken = data.link_token;
         localStorage.setItem("link_token", linkToken);
