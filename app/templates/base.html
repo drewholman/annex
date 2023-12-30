@@ -45,19 +45,21 @@
         {% endwith %}
 
         {# application content needs to be provided in the app_content block #}
-        {% block app_content %}{% endblock %}
-    </div>
-    <div class="card card-border-primary btn collapse" id="link-account">
-        <div class="container-fluid">
-            <div class="row card-subtitle">
-                <div class="col" href="#linkAccount">
-                    <h6>+ Link new account</h6>
-                    <img id="loader" class="mx-auto my-4" style="display: none"
-                        src="{{ url_for('static', filename='loading.gif') }}">
+        {% block app_content %}
+        <div>
+            <div class="container-fluid">
+                <div class="row card-subtitle">
+                    <div class="col" href="#linkAccount">
+                        <h6>+ Link new account</h6>
+                        <img id="loader" class="mx-auto my-4" style="display: none"
+                            src="{{ url_for('static', filename='loading.gif') }}">
+                    </div>
                 </div>
             </div>
-        </div>
+        </div>{
+        % endblock %}
     </div>
+    
 {% endblock %}
 
 {% block scripts %}
