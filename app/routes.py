@@ -216,13 +216,13 @@ def unfollow(username):
 access_token = None
 
 ## Get transactions by group
-@bp.route('/transactions/<group_id>', methods=['GET'])
+@app.route('/transactions/<group_id>', methods=['GET'])
 def get_transactions(group_id):
     group = Group.query.filter_by(id=group_id)
     return render_template('cash/transactions.html', title="Test", group=group)
 
 ## Update transaction metadata
-@bp.route('/transaction/update', methods=['POST'])
+@app.route('/transaction/update', methods=['POST'])
 def update_transaction():
     print(request.json)
     ## Query old and new name matches for first time updates or a new_name switch
@@ -236,19 +236,19 @@ def update_transaction():
     return redirect(url_for('cash.dashboard'))
 
 ## Dedupe linked institutions
-@bp.route('/user/institution/<ins_id>', methods=['GET'])
+@app.route('/user/institution/<ins_id>', methods=['GET'])
 def dedupe_instution(ins_id):
     if check_institution(ins_id) == "exists":
         flash(_('Institution has already been linked, "Refresh" instead'))
     return jsonify(check_institution(ins_id))
 
 ## Return oauth route for oauth banks
-@bp.route('/oauth', methods=['GET'])
+@app.route('/oauth', methods=['GET'])
 def oauth():
     return render_template('cash/oauth.html', title=_('OAuth'))
 
 ## Create link token for Plaid Link
-@bp.route('/create_link_token', methods=['POST', 'GET'])
+@app.route('/create_link_token', methods=['POST', 'GET'])
 def create_link_token():
     client = configure()
     products = get_products()
@@ -274,7 +274,7 @@ def create_link_token():
         return json.loads(e.body)
 
 ## Webhook to check for new transactions. Check logs here: https://dashboard.plaid.com/activity/logs?environment=ENV_SANDBOX&timezone=America%2FLos_Angeles 
-@bp.route('/event', methods=['POST'])
+@app.route('/event', methods=['POST'])
 def event():
     print(request.json)
     webhook_code = request.json['webhook_code']
@@ -291,7 +291,7 @@ def event():
 ## Item json schema here:https://plaid.com/docs/api/items/#webhooks
 ## https://plaid.com/docs/api/items/#error
 ## Item handling example here: https://github.com/plaid/pattern/blob/master/server/webhookHandlers/handleItemWebhook.js
-@bp.route('/item/event', methods=['POST'])
+@app.route('/item/event', methods=['POST'])
 def item_event():
     print(request.json)
     webhook_code = request.json['webhook_code']
@@ -302,7 +302,7 @@ def item_event():
     return {'success': True}
 
 ## Set item access token in Plaid Link process
-@bp.route('/set_access_token', methods=['POST'])
+@app.route('/set_access_token', methods=['POST'])
 def set_access_token():
     client = configure()
 
@@ -325,7 +325,7 @@ def set_access_token():
         return json.loads(e.body)
 
 ## Update current balances for an item
-@bp.route('/balance/<item_id>/update', methods=['GET'])
+@app.route('/balance/<item_id>/update', methods=['GET'])
 def update_balance(item_id):
     access_token = Item.query.filter_by(id=item_id).first().access_token
     client = configure()
@@ -348,7 +348,7 @@ def update_balance(item_id):
         return jsonify(error_response)
     
 ## Get balances & add new item & accounts to db
-@bp.route('/balance/get', methods=['GET'])
+@app.route('/balance/get', methods=['GET'])
 def get_balance():
     client = configure()
 
@@ -379,7 +379,7 @@ def get_balance():
         return jsonify(error_response)
 
 ## Get institution name for db storage
-@bp.route('/institution/<ins_id>', methods=['GET'])
+@app.route('/institution/<ins_id>', methods=['GET'])
 def institution(ins_id):
     client = configure()
 
@@ -397,7 +397,7 @@ def institution(ins_id):
         return jsonify(error_response)
 
 ## Remove item, associated accounts & transactions from the db
-@bp.route('/item/<item_id>/delete')
+@app.route('/item/<item_id>/delete')
 def delete_item(item_id):
     client = configure()
     item = Item.query.filter_by(id=item_id).first()
@@ -423,7 +423,7 @@ def delete_item(item_id):
         return jsonify(error_response)
 
 ## Sync transactions after webhook event
-@bp.route('/item/<item_id>/transactions', methods=['GET'])
+@app.route('/item/<item_id>/transactions', methods=['GET'])
 def sync_transactions(item_id):
     print(item_id)
     client = configure()
