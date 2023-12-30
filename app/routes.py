@@ -249,7 +249,9 @@ def oauth():
 
 @app.route('/b_testing', methods=['GET'])
 def b_testing():
-    print("test")
+    return render_template('index.html', title=_('B testing'), form=form,
+                           posts=posts.items, next_url=next_url,
+                           prev_url=prev_url)
 
 ## Create link token for Plaid Link
 @app.route('/create_link_token', methods=['POST', 'GET'])
