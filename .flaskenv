@@ -1,3 +1,16 @@
 FLASK_APP=annex.py
 DATABASE_URL='postgresql://uygkqdeeaagpal:5ea8237b1920cdf530ce9b7519c162774954ef4b059875284aea77c89bee6fe6@ec2-54-211-177-159.compute-1.amazonaws.com:5432/ddagdfaql329gi'
 SQLALCHEMY_DATABASE_URI='postgresql://uygkqdeeaagpal:5ea8237b1920cdf530ce9b7519c162774954ef4b059875284aea77c89bee6fe6@ec2-54-211-177-159.compute-1.amazonaws.com:5432/ddagdfaql329gi'
+SECRET_KEY=a-really-long-and-unique-key-that-nobody-knows
+MAIL_SERVER=smtp.googlemail.com
+MAIL_PORT=587
+MAIL_USE_TLS=1
+MAIL_USERNAME=<your-gmail-username>
+MAIL_PASSWORD=<your-gmail-password>
+MS_TRANSLATOR_KEY=4246dc32642f4e03b74674528d3bb79c
+PLAID_CLIENT_ID=5f18ff51b89a9900124d8bfc
+PLAID_SECRET=6fafd75929d40d6adaaeba5423d3f1
+PLAID_ENV=development
+PLAID_PRODUCTS=transactions
+PLAID_COUNTRY_CODES=US,CA
+PLAID_REDIRECT_URI=https://e9dd-67-185-58-96.ngrok.io/cash/oauth
