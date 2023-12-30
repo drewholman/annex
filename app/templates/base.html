@@ -53,15 +53,6 @@
                     + Link new account
                 </a>
             </button>
-            <div class="container-fluid">
-                <div class="row card-subtitle">
-                    <div class="col" href="#linkAccount">
-                        <h6>+ Link new account</h6>
-                        <img id="loader" class="mx-auto my-4" style="display: none"
-                            src="{{ url_for('static', filename='loading.gif') }}">
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     
@@ -71,4 +62,5 @@
     {{ super() }}
     {{ moment.include_moment() }}
     {{ moment.lang(g.locale) }}
+    <script src="{{url_for('static', filename='plaid.js')}}"></script>
 {% endblock %}
